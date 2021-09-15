@@ -1,4 +1,4 @@
-version: '3.9'
+version: '3.3'
 
 services:
 
@@ -14,38 +14,18 @@ services:
       MB_DB_TYPE: postgres
       MB_DB_DBNAME: metabase
       MB_DB_PORT: 5432
-      MB_DB_USER: /run/secrets/db_user
-      MB_DB_PASS: /run/secrets/db_password
+      MB_DB_USER: User
+      MB_DB_PASS: p4ssw0rd
       MB_DB_HOST: postgres-secrets
-    networks: 
-      - metanet1-secrets
     depends_on: 
       - postgres-secrets
-    secrets:
-      - db_password
-      - db_user
+
 
   postgres-secrets:
     image: postgres:latest
     container_name: postgres-secrets
     hostname: postgres-secrets
     environment:
-      POSTGRES_USER: /run/secrets/db_user
+      POSTGRES_USER: User
       POSTGRES_DB: metabase
-      POSTGRES_PASSWORD: /run/secrets/db_password
-    networks: 
-      - metanet1-secrets
-    secrets:
-      - db_password
-      - db_user
-
-networks: 
-  metanet1-secrets:
-    driver: bridge
-
-secrets:
-   db_password:
-     file: db_password.txt
-   db_user:
-     file: db_user.txt
-
+      POSTGRES_PASSWORD: p4ssw0rd
