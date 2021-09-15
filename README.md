@@ -1,2 +1,2 @@
-# metabse
-Metabse - Docker-compose
+# metabase
+Metabase - Docker-compose
