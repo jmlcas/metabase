@@ -1,31 +1,31 @@
-version: '3.3'
+version: '3.9'
 
 services:
 
-  metabase-secrets:
+  metabase:
     image: metabase/metabase:latest
-    container_name: metabase-secrets
-    hostname: metabase-secrets
-    volumes: 
-    - ./dev/urandom:/dev/random:ro
+    container_name: metabase
+    hostname: metabase
+    volumes:
+      - ./dev/urandom:/dev/random:ro
     ports:
       - "8200:3000"
-    environment: 
+    restart: unless-stopped 
+    environment:
       MB_DB_TYPE: postgres
       MB_DB_DBNAME: metabase
       MB_DB_PORT: 5432
       MB_DB_USER: User
       MB_DB_PASS: p4ssw0rd
-      MB_DB_HOST: postgres-secrets
-    depends_on: 
-      - postgres-secrets
+      MB_DB_HOST: postgres
 
-
-  postgres-secrets:
+  postgres:
     image: postgres:latest
-    container_name: postgres-secrets
-    hostname: postgres-secrets
+    container_name: postgres
+    hostname: postgres
+    restart: unless-stopped 
     environment:
       POSTGRES_USER: User
       POSTGRES_DB: metabase
       POSTGRES_PASSWORD: p4ssw0rd
+
