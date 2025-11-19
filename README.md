@@ -1,7 +1,6 @@
-# metabase
-Metabase - Docker-compose
+# Metabase
 
-Ver en "localhost:8200"
+Ver en "http://localhost:8200"
 
 </span><span>Imagen de como hacer la conexión a la base de datos</span><span><span><span>:
 
